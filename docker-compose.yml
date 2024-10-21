@@ -1,0 +1,32 @@
+services:
+  node_service:
+    image: node_service
+    networks:
+      - bullshitest_network
+    build:
+      context: ./node_service
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+  python_service:
+    image: python_service
+    networks:
+      - bullshitest_network
+    build:
+      context: ./python_service
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+  frontend:
+    image: frontend
+    networks:
+      - bullshitest_network
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+
+networks:
+  bullshitest_network:
+    driver: bridge
